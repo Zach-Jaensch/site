@@ -1,0 +1,15 @@
+dist/
+tsconfig.tsbuildinfo
+node_modules/
+.next/
+.github/
+coverage/
+.idea/
+.vscode/
+.DS_Store
+
+*.html
+*.css
+*.txt
+
+__snapshots__/

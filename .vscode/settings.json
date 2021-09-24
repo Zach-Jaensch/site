@@ -1,0 +1,13 @@
+{
+    "[typescript]": {
+        "editor.formatOnSave": true,
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true,
+    },
+    "[json]": {
+        "editor.formatOnSave": true,
+    },
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+    "jest.jestCommandLine": "yarn test"
+}

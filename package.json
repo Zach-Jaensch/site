@@ -2,21 +2,82 @@
   "name": "site",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.17.6"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "test": "jest",
+    "prettier": "prettier -c ."
   },
   "dependencies": {
-    "next": "11.1.2",
+    "@loadable/component": "^5.15.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "next": "^11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-query": "^3.24.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@storybook/addon-a11y": "^6.3.8",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/addons": "^6.3.8",
+    "@storybook/react": "^6.3.8",
+    "@testing-library/dom": "^8.6.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.2",
+    "@types/jest-axe": "^3.5.3",
+    "@types/loadable__component": "^5.13.4",
+    "@types/node": "^16.9.6",
     "@types/react": "17.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "babel-loader": "^8.2.2",
     "eslint": "7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.2",
+    "eslint-plugin-jest-dom": "^3.9.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.2",
+    "jest": "^27.2.1",
+    "jest-axe": "^5.0.1",
+    "jest-css-modules": "^2.1.0",
+    "jest-extended": "^0.11.5",
+    "jest-fail-on-console": "^2.0.4",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1",
+    "storybook-addon-material-ui": "^0.9.0-alpha.24",
+    "storybook-addon-next-router": "^3.0.8",
     "typescript": "4.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx,json}": [
+      "yarn prettier -w"
+    ],
+    "./**/*.{js,jsx,ts,tsx}": [
+      "yarn eslint --fix"
+    ]
   }
 }
