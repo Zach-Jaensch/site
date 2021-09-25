@@ -1,10 +1,11 @@
-import { createTheme } from "@material-ui/core";
-import createPalette from "@material-ui/core/styles/createPalette";
-
-const palette = createPalette({});
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { deepPurple, amber } from "@mui/material/colors";
 
 const theme = createTheme({
-  palette,
+  palette: {
+    primary: deepPurple,
+    secondary: amber,
+  },
 });
 
-export default theme;
+export default responsiveFontSizes(theme);

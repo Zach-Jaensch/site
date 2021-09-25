@@ -1,24 +1,28 @@
 import Head from "next/head";
-import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import { useEffect, useRef } from "react";
 import { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+import createEmotionCache from "utils/createEmotionCache";
 import { buildQueryClient } from "utils/buildQueryClient";
 import theme from "theme";
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles && jssStyles.parentElement) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
+export interface IMyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp({
+  Component,
+  emotionCache = clientSideEmotionCache,
+  pageProps,
+}: IMyAppProps): JSX.Element {
   const queryClientRef = useRef<QueryClient>();
   if (!queryClientRef.current) {
     queryClientRef.current = buildQueryClient();
@@ -29,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [pageProps.accessToken]);
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>Till - NextGen</title>
         <meta
@@ -46,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           <ReactQueryDevtools />
         </QueryClientProvider>
       </ThemeProvider>
-    </>
+    </CacheProvider>
   );
 }
 
